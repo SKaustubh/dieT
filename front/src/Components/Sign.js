@@ -2,7 +2,7 @@ import React from 'react'
 
 function Sign() {
     return (
-        <section data-bss-scroll-zoom="true" data-bss-scroll-zoom-speed="1" style={{ background: 'url("/assets/img/pexels-linda-ellershein-3127880.jpg")' }}>
+        <section data-bss-scroll-zoom="true" data-bss-scroll-zoom-speed="1" className="position-relative py-4 py-xl-5" style={{ background: 'url("/assets/img/pexels-linda-ellershein-3127880.jpg")', backgroundSize: "cover" }}>
             <div className="container py-lg-5 my-lg-5 px-lg-5">
                 <div className="row mb-5">
                     <div className="col-md-8 col-xl-6 text-center mx-auto">
