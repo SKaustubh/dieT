@@ -7,6 +7,7 @@ import Footerr from "./Components/Footerr";
 import Login from "./Components/Login";
 
 import Sign from "./Components/Sign";
+import Calorie from "./Components/Calorie";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route element={<CardsSection />} path="/" />
           <Route element={<Login />} path="/login" />
           <Route element={<Sign />} path="/signup" />
+          <Route element={<Calorie />} path="/Calorie" />
 
 
 
