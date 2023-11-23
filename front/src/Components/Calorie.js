@@ -9,18 +9,37 @@ const Calorie = () => {
 
 
     const fetchUserData = async () => {
-        const res = await fetch('http://localhost:5000/api/data');
-        console.log(res.status);
-        if (res.status === 200) {
-            const data = await res.json();
-            console.log(data);
-            setApiData(data);
+        try {
+            const res = await fetch('http://localhost:5000/api/data', {
+                method: 'GET',
+                mode: 'cors', // Add this line
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                console.log(data);
+                setApiData(data);
+            } else {
+                console.error('Error fetching API data:', res.statusText);
+                setError('Error fetching data');
+            }
+        } catch (error) {
+            console.error('Error fetching API data:', error);
+            setError('Error fetching data');
+        } finally {
+            setLoading(false);
         }
     };
+
+
 
     useEffect(() => {
         fetchUserData();
     }, []);
+
 
 
 
