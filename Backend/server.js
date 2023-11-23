@@ -23,8 +23,8 @@ app.get('/api/data', async (req, res) => {
     try {
         const apiKey = '6OCvMgrbijtvEPGpuN+eHQ==qiCbcLxJFLawzmGd';
         var query = '1lb brisket and fries';
-
-        const response = await axios.get(`https://api.api-ninjas.com/v1/nutrition?query=${query}`, {
+        const apiUrl = 'https://api.api-ninjas.com/v1/nutrition?query=';
+        const response = await axios.get(apiUrl + query , {
             headers: {
                 'X-Api-Key': apiKey,
             },
