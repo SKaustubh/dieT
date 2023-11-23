@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const axios = require('axios');
-
+const userRouter = require('./routers/userRouter');
 
 const cors = require('cors');
 
@@ -16,6 +16,8 @@ app.use(cors({
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
+
+app.use('/user', userRouter);
 
 app.get('/api/data', async (req, res) => {
     try {
@@ -33,6 +35,23 @@ app.get('/api/data', async (req, res) => {
         console.error('Error fetching API data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+// routes
+app.get('/', (req, res) => {
+    res.send('response from index');
+});
+
+app.get('/home', (req, res) => {
+    res.send('response from home');
+});
+
+app.get('/add', (req, res) => {
+    res.send('response from add');
+});
+
+app.get('/getall', (req, res) => {
+    res.send('response from getall');
 });
 
 const PORT = process.env.PORT || 5000;

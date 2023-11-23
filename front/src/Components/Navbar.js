@@ -1,6 +1,54 @@
-import React from 'react'
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import UseAppContext from "../AppContext";
 
-function Navbar() {
+
+const Navbar = () => {
+
+    const { loggedin, logout } = UseAppContext();
+
+    const [currentUser, setCurrentUser] = useState(
+        JSON.parse(sessionStorage.getItem("user"))
+    );
+
+    const displayUserOption = () => {
+        if (loggedin) {
+            return (
+                <>
+                    <li className="nav-item">
+                        <button className="btn btn-danger" onClick={logout}>
+                            Logout
+                        </button>
+                    </li>
+                    <li>
+                        <img
+                            height={50}
+                            className="rounded-circle"
+                            src={"http://localhost:5000/" + currentUser.avatar}
+                            alt=""
+                        />
+                    </li>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <li className="nav-item">
+                        <NavLink className="nav-link " to="/Login">
+                            Login
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link " to="/Signup">
+                            Sign
+                        </NavLink>
+                    </li>
+                </>
+            );
+        }
+    };
+
+
     return (
         <nav
             className="navbar navbar-expand-md sticky-top bg-dark-subtle py-3"
@@ -14,19 +62,19 @@ function Navbar() {
             }}
         >
             <div className="container">
-                <a className="navbar-brand d-flex align-items-center" href="#">
+                <NavLink className="navbar-brand d-flex align-items-center" to="/">
                     <span
                         data-bss-parallax-bg={true}
                         style={{
                             backgroundImage:
                                 'url("/assets/img/pexels-ivan-samkov-5799692.jpg")',
                             backgroundPosition: "center",
-                            backgroundSize: "cover", 
+                            backgroundSize: "cover",
                         }}
                     >
                         DT
                     </span>
-                </a>
+                </NavLink>
                 <button
                     data-bs-toggle="collapse"
                     className="navbar-toggler"
@@ -38,70 +86,41 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item">
-                            <a
+                            <NavLink
                                 className="nav-link active"
                                 data-bss-hover-animate="pulse"
-                                href="#Personal"
+                                to="/"
                             >
-                                Personal
-                            </a>
+                                Home
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <a
+                            <NavLink
                                 className="nav-link active"
                                 data-bss-hover-animate="pulse"
-                                href="#Bussines"
+                                to="/Calorie"
                             >
-                                Bussiness
-                            </a>
+                                Calorie Tracker
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <a
+                            <NavLink
                                 className="nav-link active"
                                 data-bss-hover-animate="pulse"
-                                href="#Community"
+                                to="/Community"
                             >
                                 Community
-                            </a>
+                            </NavLink>
                         </li>
                     </ul>
-                    <button
-                        className="btn btn-primary me-3"
-                        data-bss-hover-animate="pulse"
-                        type="button"
-                        style={{
-                            marginRight: '10px',
-                            color: 'rgb(255, 249, 249)',
-                            background: 'var(--bs-gray-800)',
-                            borderRadius: '25px',
-                            borderTopRightRadius: '158px',
-                            borderBottomLeftRadius: '142px',
-                            '--bs-body-color': '#040404',
-                            borderWidth: '0.8px',
-                            borderColor: 'rgb(255, 255, 255)'
-                        }}
-                    >
-                        Login
-                    </button>
-                    <button
-                        className="btn btn-primary ms-0 me-4"
-                        data-bss-hover-animate="pulse"
-                        type="button"
-                        style={{
-                            marginLeft: '-2px',
-                            marginRight: '12px',
-                            borderTopLeftRadius: '94px',
-                            borderColor: 'var(--bs-navbar-brand-color)',
-                            background: 'var(--bs-secondary-border-subtle)',
-                            borderBottomRightRadius: '90px'
-                        }}
-                    >
-                        SignUp
-                    </button>
+                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {displayUserOption()}
+                    </ul>
+
                 </div>
             </div>
         </nav>
     )
 }
 
-export default Navbar
+export default Navbar;
