@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import Chart from 'chart.js/auto';
 
 
 const Calorie = () => {
@@ -35,6 +35,63 @@ const Calorie = () => {
         }
     };
 
+    useEffect(() => {
+        if (apiData) {
+            const ctx = document.getElementById('myChart');
+
+            if (ctx) {
+                const myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['carbohydrates', 'Cholesterol', 'Saturated fat', 'Total Fat', 'Fiber Content', 'Potassium', 'Protein', 'Sodium', 'Sugar'],
+                        datasets: [{
+                            label: `Nutritional values of ${apiData[0].name}`,
+                            data: [
+                                apiData[0].carbohydrates_total_g,
+                                apiData[0].cholesterol_mg,
+                                apiData[0].fat_saturated_g,
+                                apiData[0].fat_saturated_g,
+                                apiData[0].fat_total_g,
+                                apiData[0].potassium_mg,
+                                apiData[0].protein_g,
+                                apiData[0].sodium_mg,
+                                apiData[0].sugar_g,
+                            ],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Cleanup the chart on component unmount
+                return () => myChart.destroy();
+            }
+        }
+    }, [apiData]);
 
 
 
@@ -311,7 +368,7 @@ const Calorie = () => {
                                 }}
                                 className="my-lg-0 py-lg-1 pt-lg-5 pb-lg-5 me-lg-0 pe-lg-5"
                             >
-                                To Burn calories you will Have To
+                                To Burn {apiData[0].calories} calories you will Have To
                             </h1>
                             <div
                                 className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di"
@@ -343,7 +400,7 @@ const Calorie = () => {
                                                 fontStyle: 'italic',
                                             }}
                                         >
-                                            10 minutes
+                                            {(apiData[0].calories / 378 * 60).toFixed(0)} minutes
                                         </span>
                                         .
                                     </p>
@@ -379,7 +436,7 @@ const Calorie = () => {
                                                 fontStyle: 'italic',
                                             }}
                                         >
-                                            10 minutes
+                                            {(apiData.calories / 223 * 60).toFixed(0)}  minutes
                                         </span>
                                         .
                                     </p>
@@ -415,7 +472,7 @@ const Calorie = () => {
                                                 fontStyle: 'italic',
                                             }}
                                         >
-                                            10 minutes
+                                            {(apiData.calories / 483 * 60).toFixed(0)} minutes
                                         </span>
                                         .
                                     </p>
@@ -451,14 +508,16 @@ const Calorie = () => {
                                                 fontStyle: 'italic',
                                             }}
                                         >
-                                            10 minutes
+                                            {(apiData[0].calories / 294 * 60).toFixed(0)} minutes
                                         </span>
                                         .
                                     </p>
                                 </div>
                             </div>
                         </div>
-
+                        <div>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
                     </div>
                 ) : (
                     <h1
