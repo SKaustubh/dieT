@@ -26,6 +26,7 @@ const Calorie = () => {
             });
 
             setApiData(response.data);
+
             console.log(response.data);
             setError(null);
         } catch (err) {
@@ -89,312 +90,358 @@ const Calorie = () => {
                                                 Search
                                             </button>
                                         </form>
+                                        {/* forms ends here */}
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row d-flex justify-content-center">
-                    <div className="col-md-6 col-xl-4 col-xxl-5">
-                        <div>
+                {apiData && apiData.length > 0 ? (
+                    <div className="row d-flex justify-content-center">
+                        <div className="col-md-6 col-xl-4 col-xxl-5">
+                            <div>
+                                <h1
+                                    style={{
+                                        fontSize: '60px',
+                                        textAlign: 'left',
+                                        fontWeight: 'bold',
+                                        color: 'var(--bs-emphasis-color)',
+                                    }}
+                                >
+                                    Nutritional Values
+                                </h1>
+                                <h1
+                                    style={{
+                                        fontSize: '33px',
+                                        textAlign: 'left',
+                                        fontStyle: 'italic',
+                                        fontWeight: 'bold',
+                                        background: 'var(--bs-body-bg)',
+                                    }}
+                                >
+                                    Serving Size per 100/grams
+                                </h1>
+                            </div>
+                            {apiData && apiData.length > 0 ? (
+                                <>
+
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>
+                                            carbohydrates:
+                                            <span className="float-end">{apiData[0].carbohydrates_total_g}</span>
+                                        </li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>Cholesterol: <span className="float-end">{apiData[0].cholesterol_mg}</span></li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>Saturated fat: <span className="float-end">{apiData[0].fat_saturated_g}</span></li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>Total Fat: <span className="float-end">{apiData[0].fat_total_g}</span></li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li >
+                                            Fiber content:
+                                            <span className="float-end">{apiData[0].fiber_g}</span>
+                                        </li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li >Potassium :<span className="float-end">{apiData[0].potassium_mg}</span></li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>Protein: <span className="float-end">{apiData[0].protein_g}</span></li>
+
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+
+                                        <li>Sodium:<span className="float-end">{apiData[0].sodium_mg}</span></li>
+                                    </ul>
+                                    <ul
+                                        className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
+                                        style={{
+                                            borderTopStyle: 'none',
+                                            borderRightStyle: 'none',
+                                            borderBottomStyle: 'solid',
+                                            borderLeftStyle: 'none',
+                                        }}
+                                    >
+                                        <li>Sugar: <span className="float-end">{apiData[0].sugar_g}</span></li>
+
+                                    </ul>
+
+
+                                </>
+                            ) : (
+                                <h1
+                                    style={{
+                                        fontSize: '33px',
+                                        textAlign: 'left',
+                                        fontStyle: 'italic',
+                                        fontWeight: 'bold',
+                                        background: 'var(--bs-body-bg)',
+                                    }}
+                                >
+                                    No Data Found
+                                </h1>
+                            )}
+                        </div>
+
+                        <div className="col-md-6 col-xl-4 col-xxl-6">
                             <h1
                                 style={{
-                                    fontSize: '60px',
+                                    fontSize: '47px',
                                     textAlign: 'left',
                                     fontWeight: 'bold',
-                                    color: 'var(--bs-emphasis-color)',
-                                }}
-                            >
-                                Nutritional Values
-                            </h1>
-                            <h1
-                                style={{
-                                    fontSize: '33px',
-                                    textAlign: 'left',
+                                    color: 'var(--bs-body-color)',
                                     fontStyle: 'italic',
-                                    fontWeight: 'bold',
-                                    background: 'var(--bs-body-bg)',
+                                    borderBottomColor: 'var(--bs-body-bg)',
+                                    position: 'sticky',
+                                    display: 'inline',
                                 }}
+                                className="my-lg-0 py-lg-1 pt-lg-5 pb-lg-5 me-lg-0 pe-lg-5"
                             >
-                                Serving Size per 100/grams
+                                To Burn 100 calories you will Have To
                             </h1>
+                            <div
+                                className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di"
+                            >
+                                <div>
+                                    <img
+                                        className="img-fluid"
+                                        src="/assets/img/running.png"
+                                        width="199"
+                                        height="199"
+                                        alt="running"
+                                    />
+                                </div>
+                                <div className="inside_icon_di">
+                                    <h1
+                                        style={{
+                                            color: 'var(--bs-emphasis-color)',
+                                            fontStyle: 'italic',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        Jog
+                                    </h1>
+                                    <p className="ms-lg-0">
+                                        you will have to do jog for&nbsp;<span
+                                            style={{
+                                                color: 'var(--bs-body-color)',
+                                                fontWeight: 'bold',
+                                                fontStyle: 'italic',
+                                            }}
+                                        >
+                                            10 minutes
+                                        </span>
+                                        .
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
+                            >
+                                <div>
+                                    <img
+                                        className="img-fluid"
+                                        src="/assets/img/yoga-pose.png"
+                                        width="199"
+                                        height="199"
+                                        alt="yoga pose"
+                                    />
+                                </div>
+                                <div className="inside_icon_di">
+                                    <h1
+                                        style={{
+                                            color: 'var(--bs-emphasis-color)',
+                                            fontStyle: 'italic',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        Power Yoga
+                                    </h1>
+                                    <p className="ms-lg-0">
+                                        you will have to Power yoga for&nbsp;<span
+                                            style={{
+                                                color: 'var(--bs-body-color)',
+                                                fontWeight: 'bold',
+                                                fontStyle: 'italic',
+                                            }}
+                                        >
+                                            10 minutes
+                                        </span>
+                                        .
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
+                            >
+                                <div>
+                                    <img
+                                        className="img-fluid"
+                                        src="/assets/img/strength.png"
+                                        width="199"
+                                        height="199"
+                                        alt="strength"
+                                    />
+                                </div>
+                                <div className="inside_icon_di">
+                                    <h1
+                                        style={{
+                                            color: 'var(--bs-emphasis-color)',
+                                            fontStyle: 'italic',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        Gym Workout
+                                    </h1>
+                                    <p className="ms-lg-0">
+                                        you will have to lift weight for&nbsp;<span
+                                            style={{
+                                                color: 'var(--bs-body-color)',
+                                                fontWeight: 'bold',
+                                                fontStyle: 'italic',
+                                            }}
+                                        >
+                                            10 minutes
+                                        </span>
+                                        .
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
+                            >
+                                <div>
+                                    <img
+                                        className="img-fluid"
+                                        src="/assets/img/walking.png"
+                                        width="199"
+                                        height="199"
+                                        alt="walking"
+                                    />
+                                </div>
+                                <div className="inside_icon_di">
+                                    <h1
+                                        style={{
+                                            color: 'var(--bs-emphasis-color)',
+                                            fontStyle: 'italic',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        Brisk Walk
+                                    </h1>
+                                    <p className="ms-lg-0">
+                                        you will have to jog for&nbsp;<span
+                                            style={{
+                                                color: 'var(--bs-body-color)',
+                                                fontWeight: 'bold',
+                                                fontStyle: 'italic',
+                                            }}
+                                        >
+                                            10 minutes
+                                        </span>
+                                        .
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Calories:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Serving_size_g:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Fat_total_g:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Protien_g:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Sodium_mg:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Potassium_mg:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Cholesterol_mg:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Carbohydrate_total_g:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">fiber_g:</li>
-                        </ul>
-                        <ul
-                            className="list-inline font-monospace text-uppercase fs-3 fw-semibold text-start"
-                            style={{
-                                borderTopStyle: 'none',
-                                borderRightStyle: 'none',
-                                borderBottomStyle: 'solid',
-                                borderLeftStyle: 'none',
-                            }}
-                        >
-                            <li className="list-inline-item">Sugar_g:</li>
-                        </ul>
-                    </div>
 
-                    <div className="col-md-6 col-xl-4 col-xxl-6">
-                        <h1
-                            style={{
-                                fontSize: '47px',
-                                textAlign: 'left',
-                                fontWeight: 'bold',
-                                color: 'var(--bs-body-color)',
-                                fontStyle: 'italic',
-                                borderBottomColor: 'var(--bs-body-bg)',
-                                position: 'sticky',
-                                display: 'inline',
-                            }}
-                            className="my-lg-0 py-lg-1 pt-lg-5 pb-lg-5 me-lg-0 pe-lg-5"
-                        >
-                            To Burn 100 calories you will Have To
-                        </h1>
-                        <div
-                            className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di"
-                        >
-                            <div>
-                                <img
-                                    className="img-fluid"
-                                    src="/assets/img/running.png"
-                                    width="199"
-                                    height="199"
-                                    alt="running"
-                                />
-                            </div>
-                            <div className="inside_icon_di">
-                                <h1
-                                    style={{
-                                        color: 'var(--bs-emphasis-color)',
-                                        fontStyle: 'italic',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    Jog
-                                </h1>
-                                <p className="ms-lg-0">
-                                    you will have to do jog for&nbsp;<span
-                                        style={{
-                                            color: 'var(--bs-body-color)',
-                                            fontWeight: 'bold',
-                                            fontStyle: 'italic',
-                                        }}
-                                    >
-                                        10 minutes
-                                    </span>
-                                    .
-                                </p>
-                            </div>
-                        </div>
-                        <div
-                            className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
-                        >
-                            <div>
-                                <img
-                                    className="img-fluid"
-                                    src="/assets/img/yoga-pose.png"
-                                    width="199"
-                                    height="199"
-                                    alt="yoga pose"
-                                />
-                            </div>
-                            <div className="inside_icon_di">
-                                <h1
-                                    style={{
-                                        color: 'var(--bs-emphasis-color)',
-                                        fontStyle: 'italic',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    Power Yoga
-                                </h1>
-                                <p className="ms-lg-0">
-                                    you will have to Power yoga for&nbsp;<span
-                                        style={{
-                                            color: 'var(--bs-body-color)',
-                                            fontWeight: 'bold',
-                                            fontStyle: 'italic',
-                                        }}
-                                    >
-                                        10 minutes
-                                    </span>
-                                    .
-                                </p>
-                            </div>
-                        </div>
-                        <div
-                            className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
-                        >
-                            <div>
-                                <img
-                                    className="img-fluid"
-                                    src="/assets/img/strength.png"
-                                    width="199"
-                                    height="199"
-                                    alt="strength"
-                                />
-                            </div>
-                            <div className="inside_icon_di">
-                                <h1
-                                    style={{
-                                        color: 'var(--bs-emphasis-color)',
-                                        fontStyle: 'italic',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    Gym Workout
-                                </h1>
-                                <p className="ms-lg-0">
-                                    you will have to lift weight for&nbsp;<span
-                                        style={{
-                                            color: 'var(--bs-body-color)',
-                                            fontWeight: 'bold',
-                                            fontStyle: 'italic',
-                                        }}
-                                    >
-                                        10 minutes
-                                    </span>
-                                    .
-                                </p>
-                            </div>
-                        </div>
-                        <div
-                            className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di mt-lg-0 pt-lg-5"
-                        >
-                            <div>
-                                <img
-                                    className="img-fluid"
-                                    src="/assets/img/walking.png"
-                                    width="199"
-                                    height="199"
-                                    alt="walking"
-                                />
-                            </div>
-                            <div className="inside_icon_di">
-                                <h1
-                                    style={{
-                                        color: 'var(--bs-emphasis-color)',
-                                        fontStyle: 'italic',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    Brisk Walk
-                                </h1>
-                                <p className="ms-lg-0">
-                                    you will have to jog for&nbsp;<span
-                                        style={{
-                                            color: 'var(--bs-body-color)',
-                                            fontWeight: 'bold',
-                                            fontStyle: 'italic',
-                                        }}
-                                    >
-                                        10 minutes
-                                    </span>
-                                    .
-                                </p>
-                            </div>
-                        </div>
                     </div>
-
-                </div>
+                ) : (
+                    <h1
+                        style={{
+                            fontSize: '33px',
+                            textAlign: 'left',
+                            fontStyle: 'italic',
+                            fontWeight: 'bold',
+                            background: 'var(--bs-body-bg)',
+                        }}
+                    >
+                        No Data Found
+                    </h1>
+                )}
             </div>
         </section>
     )
