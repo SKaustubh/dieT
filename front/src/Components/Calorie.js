@@ -91,6 +91,37 @@ const Calorie = () => {
                                             </button>
                                         </form>
                                         {/* forms ends here */}
+                                        {apiData && (
+                                            apiData === 'oops! There was an error' ? (
+                                                <div className="alert alert-warning">
+                                                    Oh no! Something went wrong. Please try again sometime.
+                                                </div>
+                                            ) : (
+                                                <div>
+                                                    <h1>
+                                                        {apiData[0].name} has a total of <strong>{apiData[0].calories} Calories</strong>
+                                                        {apiData[0].calories > 200 && <img src="/assets/img/shocked.png" alt="Shocked" className="img-responsive" />}
+                                                    </h1>
+
+                                                    {apiData[0].sodium_mg > 1000 && (
+                                                        <div className="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                                                            <div>
+                                                                This food contains a high amount of sodium. High Sodium causes severe dehydration and water retention.
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                    {apiData[0].sugar_g > 100 && (
+                                                        <div className="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                                                            <div>
+                                                                This food contains a high amount of sugar. Sugar causes insulin spikes and is a major cause of obesity.
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )
+                                        )}
+
 
                                     </div>
                                 </div>
@@ -280,7 +311,7 @@ const Calorie = () => {
                                 }}
                                 className="my-lg-0 py-lg-1 pt-lg-5 pb-lg-5 me-lg-0 pe-lg-5"
                             >
-                                To Burn 100 calories you will Have To
+                                To Burn calories you will Have To
                             </h1>
                             <div
                                 className="text-start d-flex d-sm-flex d-xxl-flex flex-row flex-shrink-1 justify-content-start align-content-around align-self-start align-items-xxl-center ms-lg-0 pe-lg-5 icon_di"
