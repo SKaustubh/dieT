@@ -107,9 +107,9 @@ const Navbar = () => {
                             <NavLink
                                 className="nav-link active"
                                 data-bss-hover-animate="pulse"
-                                to="/Community"
+                                to="/Meal"
                             >
-                                Community
+                                Meal
                             </NavLink>
                         </li>
                     </ul>

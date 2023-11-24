@@ -16,6 +16,11 @@ const CardsSection = () => {
     // Replace '/Login' with the path of the page you want to navigate to
     navigate('/Calorie');
   };
+  const handleButtonClickM = () => {
+    // Replace '/Login' with the path of the page you want to navigate to
+    navigate('/Meal');
+  };
+
 
 
   return (
@@ -164,6 +169,7 @@ const CardsSection = () => {
                   <button
                     className="btn btn-primary mt-sm-auto mt-md-auto mt-lg-auto pb-2 mx-0 mt-2"
                     type="button"
+                    onClick={handleButtonClickM}
                     style={{ fontWeight: "bold" }}
                   >
                     Meal Planner&nbsp;&nbsp;

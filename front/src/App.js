@@ -10,6 +10,7 @@ import Sign from "./Components/Sign";
 import Calorie from "./Components/Calorie";
 import NotFound from "./Components/NotFound.js";
 import { AppProvider } from "./AppContext.js";
+import Meal from "./Components/Meal.js";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route element={<CardsSection />} path="/" />
               <Route element={<Login />} path="/login" />
               <Route element={<Sign />} path="/signup" />
+              <Route element={<Meal />} path="/Meal" />
               <Route element={<UserAuth><Calorie /></UserAuth>} path="/Calorie" />
               <Route element={<NotFound />} path="*" />
 
